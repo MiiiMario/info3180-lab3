@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <form action= "{{url_for('contact')}}"  method="post">
+
+      <div>
+          <h2> Contact Form</h2>
+                {{ form.csrf_token }}
+          <p>Fill in this form to contact the site owners.</p>
+      </div>
+      <div>
+          <p><strong>Name </strong><span style="color:blue">(Required)</span></p>
+          {% for message in form.name.errors %}
+          <div class="flash"> {{message }} </div>
+          {% endfor %}
+          <p>Please enter your full name</p>
+          {{form.name(class = "text")}}
+          
+      </div>
+      <div>
+          <p><strong>Email</strong> <span style="color:blue">(Required)</span></p>
+          {% for message in form.email.errors %}
+          <div class="flash"> {{message }} </div>
+          {% endfor %}
+          <p>Please enter your email address</p>
+          {{form.email(class = "text")}}
+          
+      </div>
+      <div>
+          <p><strong>Subject</strong> </strong> <span style="color:blue">(Required)</span></p>
+          {% for message in form.subject.errors %}
+          <div class="flash"> {{message }} </div>
+          {% endfor %}
+          <p>Please enter the subject of your message</p>
+          {{form.subject(class = "text")}}
+          
+      </div>
+      <div>
+          <p><strong>Message</strong> <span style="color:blue">(Required)</span></p>
+          {% for message in form.message.errors %}
+          <div class="flash"> {{message }} </div>
+          {% endfor %}
+          <p>Please enter the message you would like to send</p>
+          {{form.message(class = "text")}}
+          
+      </div>
+          {{form.button(class="sendButton")}}
+     
+    </form>
+
+{% endblock %}
